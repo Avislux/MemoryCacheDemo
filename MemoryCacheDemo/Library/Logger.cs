@@ -23,6 +23,7 @@ namespace MemoryCacheDemo.Library
             file.Close();
         }
         public static void WriteButBreakCache(string text) {
+            //string directory = new System.Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath; also gets the bin folder.
             string directory = AppDomain.CurrentDomain.BaseDirectory + "\\bin\\"; //Project directory.
             string fileLocation = directory + "/Log.txt";
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileLocation, true)) {
