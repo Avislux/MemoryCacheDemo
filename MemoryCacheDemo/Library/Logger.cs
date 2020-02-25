@@ -22,5 +22,14 @@ namespace MemoryCacheDemo.Library
             file.WriteLine(text);
             file.Close();
         }
+        public static void WriteButBreakCache(string text) {
+            string directory = AppDomain.CurrentDomain.BaseDirectory + "\\bin\\"; //Project directory.
+            string fileLocation = directory + "/Log.txt";
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileLocation, true)) {
+                file.WriteLine(text);
+            }
+
+        }
+
     }
 }

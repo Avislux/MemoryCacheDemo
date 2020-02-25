@@ -11,7 +11,7 @@ namespace MemoryCacheDemo
 {
     public class RequestHandler
     {
-        public static string Handle( HttpRequest request) {
+        public static string Handle( HttpRequest request ) {
             
             try {
                 //MemoryCache cache = MemoryCache.Default;
@@ -20,7 +20,16 @@ namespace MemoryCacheDemo
                 GlobalCache.Set("RequestType", request.RequestType);
                 // var dict = cache.ToDictionary<string, object>(z => z); //Someone tell me how to use this properly.
                 string cacheJson = GlobalCache.ToJson();
-                Logger.Write(cacheJson);
+                string action = "write";
+                if (request.QueryString.AllKeys.Contains("action")) {
+                    action = request.QueryString["action"];
+                }
+                if (action == "break") {
+                    Logger.WriteButBreakCache(cacheJson);
+                } else {
+                    Logger.Write(cacheJson);
+                }
+                
                 //Logger.WriteV2(cacheJson);
                 return cacheJson;
                

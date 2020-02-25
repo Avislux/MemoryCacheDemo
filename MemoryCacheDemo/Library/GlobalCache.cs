@@ -18,8 +18,8 @@ namespace MemoryCacheDemo.Library
         public static void IncreaseInt() {
             string key = "Int";
             if (Cache.Contains(key)) {
-                int shits = (int) Cache.Get(key);
-                Cache.Set(key, ++shits, DateTime.Now.AddMinutes(5));
+                int number = (int) Cache.Get(key);
+                Cache.Set(key, ++number, DateTime.Now.AddMinutes(5));
             } else {
                 Cache.Set(key, 0, DateTime.Now.AddMinutes(5));
 
